@@ -33,11 +33,11 @@ const fillFormAndObject = () => {
 };
 
 
-form.addEventListener('input', event => {
-  const { name, value } = event.target;
-  formData[name] = value.trim();
-  saveToLocalStorage();
-});
+// form.addEventListener('input', event => {
+//   const { name, value } = event.target;
+//   formData[name] = value.trim();
+//   saveToLocalStorage();
+// });
 
 
 document.addEventListener('DOMContentLoaded', () => {
