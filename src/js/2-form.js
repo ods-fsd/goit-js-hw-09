@@ -1,63 +1,56 @@
 const formData = {
-  email: '',
-  message: '',
+  email: "",
+  message: ""
 };
 
 const form = document.querySelector('.feedback-form');
-const localStorageKey = 'feedback-form-state';
+const emailInput = form.querySelector('input[name="email"]');
+const messageTextarea = form.querySelector('textarea[name="message"]');
+const storageKey = "feedback-form-state";
 
 
-const saveToLocalStorage = () => {
-  localStorage.setItem(localStorageKey, JSON.stringify(formData));
-};
-
-
-const loadFromLocalStorage = () => {
+function loadFromStorage() {
   try {
-    const savedData = localStorage.getItem(localStorageKey);
-    return savedData ? JSON.parse(savedData) : null;
+    const serializedState = localStorage.getItem(storageKey);
+    if (serializedState) {
+      const parsedState = JSON.parse(serializedState);
+      formData.email = parsedState.email || "";
+      formData.message = parsedState.message || "";
+      emailInput.value = formData.email;
+      messageTextarea.value = formData.message;
+    }
   } catch (error) {
-    console.error('Failed to parse data from localStorage:', error);
-    return null;
+    console.error("Помилка завантаження зі сховища:", error);
   }
-};
+}
+
+document.addEventListener('DOMContentLoaded', loadFromStorage);
 
 
-const fillFormAndObject = () => {
-  const savedData = loadFromLocalStorage();
-  if (savedData) {
-    Object.assign(formData, savedData);
-    form.elements.email.value = formData.email;
-    form.elements.message.value = formData.message;
-  }
-};
+function handleInput(event) {
+  const { name, value } = event.target;
+  formData[name] = value;
+  localStorage.setItem(storageKey, JSON.stringify(formData));
+}
+
+form.addEventListener('input', handleInput);
 
 
-// form.addEventListener('input', event => {
-//   const { name, value } = event.target;
-//   formData[name] = value.trim();
-//   saveToLocalStorage();
-// });
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  fillFormAndObject();
-});
-
-
-form.addEventListener('submit', event => {
+function handleSubmit(event) {
   event.preventDefault();
 
-  if (formData.email === '' || formData.message === '') {
-    alert('Fill please all fields');
+  if (!formData.email || !formData.message) {
+    alert("Fill please all fields");
     return;
   }
 
-  console.log(formData);
+  console.log("Дані форми:", formData);
 
 
-  localStorage.removeItem(localStorageKey);
-  formData.email = '';
-  formData.message = '';
+  localStorage.removeItem(storageKey);
+  formData.email = "";
+  formData.message = "";
   form.reset();
-});
+}
+
+form.addEventListener('submit', handleSubmit);
