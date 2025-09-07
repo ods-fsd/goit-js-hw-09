@@ -3,7 +3,7 @@ const formData = {
   message: ""
 };
 
-const form = document.querySelector('.form');
+const form = document.querySelector('.feedback-form');
 const emailInput = form.querySelector('input[name="email"]');
 const messageTextarea = form.querySelector('textarea[name="message"]');
 const storageKey = "feedback-form-state";
