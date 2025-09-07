@@ -3,7 +3,7 @@
   font-size: 48px;
   margin: 48px;
 }
-.form {
+.feedback-form {
   display: flex;
   flex-direction: column;
   gap: 8px;
