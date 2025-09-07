@@ -1,0 +1,28 @@
+.menu-list {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 70px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 30vh;
+}
+
+.menu-separator {
+  display: inline-block;
+  width: 90%;
+  border-top: 1px solid #0a0000;
+}
+
+.gallery-a,
+.form-a {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.gallery-a:hover,
+.form-a:hover {
+  color: #007bff;
+  font-weight: 600;
+}

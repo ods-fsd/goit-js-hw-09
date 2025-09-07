@@ -1,15 +1,7 @@
 @import url('./reset.css');
 @import url('./gallery.css');
 @import url('./form.css');
-
-.menu-list {
-  margin-top: 32vh;
-  font-size: 65px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+@import url('./menu.css');
 
 .div-btn {
   display: flex;
@@ -38,16 +30,4 @@
 
 .b-button:hover {
   background-color: #0056b3;
-}
-
-.gallery-a,
-.form-a {
-  color: #000000;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.gallery-a:hover,
-.form-a:hover {
-  color: #007bff;
-  font-weight: 600;
 }
